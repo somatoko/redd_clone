@@ -1,0 +1,35 @@
+/* Entry point for your PostCSS build */
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* similarly */
+/* @import "tailwindcss/base" */
+@import "./components/buttons.css";
+@import "./components/forms.css";
+@import "tailwindcss";
+
+.debug {
+  @apply border border-red-500;
+}
+
+.debug1 {
+  @apply border border-blue-500;
+}
+
+.debug2 {
+  @apply border border-green-500;
+}
+
+.debug3 {
+  @apply border border-indigo-500;
+}
+
+.debug4 {
+  @apply border border-black;
+}
+
+.bgdebug {
+  @apply bg-red-100;
+}
