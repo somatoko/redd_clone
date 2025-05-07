@@ -47,7 +47,7 @@
 							<div class="rounded bg-white border border-gray-400 text-gray-600 ml-1 hover:gb-gray-200">
 								<div class="pt-2 mb-2 pl-3 pr-1">
 									<%= link_to "#", class: "no-underline flex justify-between text-xm tracking-wide items-center font-semibold" do %>
-										<%= current_user.email %>
+										<%= current_user.username || current_user.email %>
 										<%= render_svg "icons/chevron-down" %>
 									<% end %>
 									<ul class="">

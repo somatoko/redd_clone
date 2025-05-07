@@ -78,3 +78,62 @@ Dev notes
 
   * Rails provides a back button; which is implemented with JS history.
 		<%= link_to "Back", :back, class: 'underline' %>
+
+  --- Adding a new table field
+  rails g migration add_username_to_users username:string:uniq
+  railg db:migrate
+
+  # Add to application_controller.rb
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+    protected
+
+    # Needed for customary-added fields to the User resource.
+    def configure_permitted_parameters
+      added_attrs = [:username]
+      devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+      devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+    end
+
+  # Add to User model
+    validates_uniqueness_of :username
+    validates_presence_of :username
+
+  --- Quick User console
+  rails c
+
+  --- View renderer has a special directory
+  The app/views/application is the last location where Rails will look to find needed things.
+
+    <%= render "basic_layout" %>
+    # or equivalently
+    <%= render partial: "basic_layout" %>
+  
+  --- Debugging values in views
+  Will nicely format hashes and arrays.
+    <%= debug @submissions %>
+  
+  --- Unique ids for HTML elements
+  <div id="<%= dom_id submission %>">
+
+  This enables the Turbo framework to update a specific part of the page in real time.
+  In this particular example it will take the entity ID and append it to submission_ string.
+
+  --- Simplify entity paths in views
+    <%= link_to submission.title, submission_path(submission) %>
+    # to
+    <%= link_to submission.title, submission %>
+  
+  --- Optional CSS class with ERB
+		<div class="<%= "pl-4" if submission.media.attached? %>">
+  
+  --- Resizing the image
+  <%= image_tag submission.media, alt: submission.title, class: '' %>
+  # to
+  <%= image_tag submission.media.variant(resize_to_fit: [200, 200]), alt: submission.title, class: '' %>
+
+  --- Image processing library
+  Rails 7 introduced newer image engine and requires vips to be installed.
+  homebrew install vips
+    -> Will take a lot of dependencies to compile it.
+    -> More info: https://stackoverflow.com/a/70849216
