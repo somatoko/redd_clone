@@ -1,10 +1,12 @@
+<% content_for :community_label, "w/#{@submission.community.name}" %>
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @submission %>
 
 <div>
-  <%= link_to "Edit this submission", edit_submission_path(@submission) %> |
-  <%= link_to "Back to submissions", submissions_path %>
+	<%= link_to "Edit this submission", edit_submission_path(@submission) %> |
+	<%= link_to "Back to submissions", submissions_path %>
 
-  <%= button_to "Destroy this submission", @submission, method: :delete %>
+	<%= button_to "Destroy this submission", @submission, method: :delete %>
 </div>

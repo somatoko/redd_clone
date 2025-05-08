@@ -7,7 +7,7 @@
 }
 
 .btn-indigo {
-  @apply bg-indigo-600 text-white hover:bg-indigo-700;
+  @apply bg-indigo-600 border border-indigo-600 text-white hover:bg-indigo-700;
 }
 
 .btn-green {
