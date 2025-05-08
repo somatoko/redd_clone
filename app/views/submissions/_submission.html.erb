@@ -34,7 +34,7 @@
 					<%= link_to edit_submission_path(submission), class: 'no-underline mr-2' do %>
 						<%= render_svg 'icons/edit', styles: 'fill-current text-gray-400 w-5 h-5 hover:text-indigo-600' %>
 					<% end %>
-					<%= button_to submission_path(submission), class: 'flex no-underline mr-2', method: :delete do %>
+					<%= button_to submission_path(submission), method: :delete, data: { confirm: "Are you sure you want to delete this submission?", turbo_confirm: "Are you sure?" }, class: 'flex no-underline mr-2' do %>
 						<%= render_svg 'icons/delete', styles: 'fill-current text-gray-400 w-5 h-5 hover:text-indigo-600' %>
 					<% end %>
 				</div>

@@ -137,3 +137,29 @@ Dev notes
   homebrew install vips
     -> Will take a lot of dependencies to compile it.
     -> More info: https://stackoverflow.com/a/70849216
+
+  --- Passing variables to partials
+    <%= render "form", submission: @submission %>
+    # equivalent to
+    <%= render "form", locals: { submission: @submission } %>
+
+    Now the form has access to `submission` variable.
+  
+  --- Clunky passing the user id to update model
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    But it's better to set inside a controller.
+    - First remove the user_id from permitted params.
+    - Then set the user_id manually.
+      @submission.user = current_user
+      # or explicitely
+      @submission.user_id = current_user.id
+  
+  --- If you want delete confirmation you have setup for turbo also
+    data: {
+      confirm: "Are you sure you want to delete this submission?",
+      turbo_confirm: "Are you sure?" }
+  
+  --- Stimulus : first contact
+    In the app/javascript/controllers is the home of all stimulus controllers.
+    Short tutorial https://www.youtube.com/watch?v=kCMB3-NHip0

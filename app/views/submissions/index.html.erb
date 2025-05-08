@@ -1,5 +1,4 @@
 <% content_for :primary_content do %>
-
 	<% if @submissions.any? %>
 		<div id="submissions">
 			<ul class="divide-y">
@@ -22,7 +21,7 @@
 <% end %>
 
 <% content_for :secondary_content do %>
-	<%= link_to "New submission", new_submission_path %>
+	<%= link_to "New submission", new_submission_path, class: 'btn btn-indigo' %>
 <% end %>
 
 <%= render "basic_layout" %>
