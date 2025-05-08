@@ -41,35 +41,37 @@
 
 				<%# Profile dropdown %>
 				<div class="w-full flex flex-wrap flex-1 items-center justify-end">
-					<div>
+					<div data-controller="dropdown">
 						<% if user_signed_in? %>
 							<%# Dropdown container %>
 							<div class="rounded bg-white border border-gray-400 text-gray-600 ml-1 hover:gb-gray-200">
 								<div class="pt-2 mb-2 pl-3 pr-1">
-									<%= link_to "#", class: "no-underline flex justify-between text-xm tracking-wide items-center font-semibold" do %>
-										<%= current_user.username || current_user.email %>
+									<%= link_to "#", class: "no-underline flex justify-between text-xm tracking-wide items-center font-semibold", data: {action: 'click->dropdown#toggle click@window->dropdown#hide'} do %>
+										<%= current_user.username ||= current_user.email %>
 										<%= render_svg "icons/chevron-down" %>
 									<% end %>
-									<ul class="">
-										<li>
-											<%= link_to "#", class: 'hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm' do %>
-												<%= render_svg "icons/user", styles: "w-5 h-5 fill-current text-gray-600 mr-3" %>
-												My Profile
-											<% end %>
-										</li>
-										<li>
-											<%= link_to edit_user_registration_path, class: 'hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm' do %>
-												<%= render_svg "icons/settings", styles: "w-5 h-5 fill-current text-gray-600 mr-3" %>
-												Account settings
-											<% end %>
-										</li>
-										<li>
-											<%= button_to destroy_user_session_path, method: :delete, class: 'hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm' do %>
-												<%= render_svg "icons/signout", styles: "w-5 h-5 fill-current text-gray-600 mr-3" %>
-												Sign out
-											<% end %>
-										</li>
-									</ul>
+									<div class="relative">
+										<ul data-dropdown-target="menu" class="hidden absolute top-3 -right-1 bg-white min-w-[200px] border rounded shadow-lg border-gray-400">
+											<li>
+												<%= link_to "#", class: 'hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm group' do %>
+													<%= render_svg "icons/user", styles: "w-5 h-5 fill-current text-gray-600 mr-3 group-hover:text-white" %>
+													My Profile
+												<% end %>
+											</li>
+											<li>
+												<%= link_to edit_user_registration_path, class: 'hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm group' do %>
+													<%= render_svg "icons/settings", styles: "w-5 h-5 fill-current text-gray-600 mr-3 group-hover:text-white" %>
+													Account settings
+												<% end %>
+											</li>
+											<li>
+												<%= button_to destroy_user_session_path, method: :delete, class: 'w-full hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm group cursor-pointer' do %>
+													<%= render_svg "icons/signout", styles: "w-5 h-5 fill-current text-gray-600 mr-3 group-hover:text-white" %>
+													Sign out
+												<% end %>
+											</li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						<% else %>
