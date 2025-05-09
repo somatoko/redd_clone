@@ -41,6 +41,27 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="mt-6 pt-6 border-t border-gray-300">
+		<% if user_signed_in? %>
+			<%= render 'comments/form' %>
+		<% else %>
+			<div class="bg-gray-50 rounded p-4 mt-6 text-center">
+				<%= link_to 'Log in reply', new_user_session_path, class: 'text-indigo-600' %>
+			</div>
+		<% end %>
+
+		<h3 class="mt-6 text-bold">Comments</h3>
+		<% if @submission.comments.any? %>
+			<div id="comments" class="">
+				<%= render @submission.comments %>
+			</div>
+		<% else %>
+			<div class="my-3">
+				No comments yet
+			</div>
+		<% end %>
+	</div>
 <% end %>
 
 <% content_for :secondary_content do %>
