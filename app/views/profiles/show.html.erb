@@ -1,0 +1,51 @@
+<% content_for :primary_content do %>
+	<h1 class="text-3xl font-bold pb-6 mb-6 border-b">User profile for <%= @profile.username %></h1>
+
+	<div class="flex items-center justify-begin gap-3 mb-3">
+		<%= render_svg 'icons/user', styles: 'flex-shrink-0 w-5 h-5 text-indigo-600 fill-current' %>
+		<h3 class="font-bold">Submissions</h3>
+	</div>
+	<ul class="list-none divide-y -ml-2">
+		<% @submissions.each do |submission| %>
+			<%= render 'submissions/submission', submission: submission %>
+		<% end %>
+	</ul>
+
+	<% if @comments.any? %>
+		<div class="flex items-center justify-begin gap-3 mt-6 mb-3 pt-6 border-t">
+			<%= render_svg 'icons/conversation', styles: 'w-5 h-5 text-indigo-600 fill-current' %>
+			<h3 class="inline font-bold">Comments</h3>
+		</div>
+		<ul class="list-none divide-y -ml-2">
+			<% @comments.each do |comment| %>
+				<%= render 'comments/comment', comment: comment %>
+			<% end %>
+		</ul>
+	<% end %>
+<% end %>
+
+<% content_for :secondary_content do %>
+	<div class="text-center">
+		<div class="flex items-center justify-center mb-3">
+			<%= gravatar_for(@profile, class: 'rounded-full w-20 h-20') %>
+		</div>
+		<p class="font-bold">
+			<%= @profile.username %>
+		</p>
+		<p class="font-gray-600">
+			Joined 
+			<%= @profile.created_at.to_formatted_s(:nice) %>
+		</p>
+
+		<div class="flex flex-col gap-3 mt-6">
+			<% if user_signed_in? %>
+				<%= link_to "New submission", new_submission_path, class: 'btn btn-indigo block w-full' %>
+			<% else %>
+				<%= link_to "Login", new_user_session_path, class: 'btn btn-outline block w-full' %>
+				<%= link_to "Sign up", new_user_registration_path, class: 'btn btn-indigo block w-full' %>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+<%= render 'basic_layout' %>

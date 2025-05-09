@@ -6,6 +6,9 @@ class CommentsController < ApplicationController
   def index
   end
 
+  def show
+  end
+
   def new
   end
 
@@ -28,9 +31,25 @@ class CommentsController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.turbo_stream
+        format.html { redirect_to submission_path(@submission), notice: 'Comment updated successfully' }
+      else
+        format.turbo_stream
+        format.html { redirect_to submission_path(@submission), alert: 'Comment could not be updated' }
+      end
+    end
   end
 
   def destroy
+    @comment.destroy
+    redirect_to submission_path(@submission), notice: 'Comment deleted'
+
+    # respond_to do |format|
+    #   format.turbo_stream { turbo_stream.remove(@comment) }
+    #   format.html { redirect_to submission_path(@submission), notice: 'Comment deleted' }
+    # end
   end
 
   private

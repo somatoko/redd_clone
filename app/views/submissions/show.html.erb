@@ -14,7 +14,7 @@
 			<% end %>
 		</div>
 		<div class="flex-1">
-			<p class="mb-3 text-sm text-gray-600">Posted by <%= @submission.user.username %>
+			<p class="mb-3 text-sm text-gray-600">Posted by <%= link_to @submission.user.username, profile_path(@submission.user), class: 'underline' %>
 				<%= time_ago_in_words(@submission.created_at) + ' ago' %>
 			</p>
 			<h1 class="font-bold text-3xl mb-6"><%= @submission.title %></h1>
@@ -26,7 +26,9 @@
 			<div class="flex items-center space-x-5 mt-6">
 				<div class="flex items-center space-x-3 pr-2">
 					<%= render_svg 'icons/conversation', styles: 'w-5 fill-current text-gray-500' %>
-					<p>3 comments</p>
+					<%# Number of comments must be updated dynamically, cuz we send comments with Turbo. %>
+					<p id="<%= dom_id(@submission) %>_comment_count">
+						<%= pluralize(@submission.comments.size, 'comment') %></p>
 				</div>
 				<% if author_of?(@submission) %>
 					<%= link_to edit_submission_path(@submission), class: 'group' do %>
@@ -44,23 +46,21 @@
 
 	<div class="mt-6 pt-6 border-t border-gray-300">
 		<% if user_signed_in? %>
-			<%= render 'comments/form' %>
+			<div id="<%= dom_id(@submission) %>_comments_form">
+				<%= render 'comments/form', comment: Comment.new %>
+			</div>
 		<% else %>
 			<div class="bg-gray-50 rounded p-4 mt-6 text-center">
 				<%= link_to 'Log in reply', new_user_session_path, class: 'text-indigo-600' %>
 			</div>
 		<% end %>
 
-		<h3 class="mt-6 text-bold">Comments</h3>
-		<% if @submission.comments.any? %>
-			<div id="comments" class="">
+		<div id="<%= dom_id(@submission) %>_comments" class="">
+			<h3 id="comment_section" class="mt-6 text-bold">Comments</h3>
+			<% if @submission.comments.any? %>
 				<%= render @submission.comments %>
-			</div>
-		<% else %>
-			<div class="my-3">
-				No comments yet
-			</div>
-		<% end %>
+			<% end %>
+		</div>
 	</div>
 <% end %>
 
