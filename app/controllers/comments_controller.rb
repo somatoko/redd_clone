@@ -52,6 +52,12 @@ class CommentsController < ApplicationController
     # end
   end
 
+  def upvote
+  end
+
+  def downvote
+  end
+
   private
 
   def set_submission
