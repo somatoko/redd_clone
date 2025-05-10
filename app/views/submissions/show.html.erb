@@ -17,7 +17,7 @@
 			<% if @submission.media.video? %>
 				<%= video_tag @submission.media, class: '' %>
 			<% else %>
-				<%= image_tag @submission.media, alt: @submission.title, class: 'rounded' %>
+				<%# image_tag @submission.media, alt: @submission.title, class: 'rounded' %>
 			<% end %>
 
 			<div class="prose prose-lg prose-indigo">
