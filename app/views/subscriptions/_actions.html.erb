@@ -1,0 +1,5 @@
+<% unless user.communities.include? community %>
+	<%= button_to 'Subscribe', community_subscriptions_path(community), method: :post, class: 'btn btn-indigo w-full' %>
+<% else %>
+	<%= button_to 'Unsubscribe', community_subscription_path(community, subscription), method: :delete, class: 'btn btn-white w-full' %>
+<% end %>

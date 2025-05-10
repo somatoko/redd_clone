@@ -10,6 +10,8 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/1 or /submissions/1.json
   def show
+    @community = @submission.community
+    @subscription = @submission.community.subscriptions.where(user: current_user).first
   end
 
   # GET /submissions/new
@@ -75,7 +77,8 @@ class SubmissionsController < ApplicationController
         }
         # format.html { redirect_back(:fallback_location root_path) }
       else
-        format.html { redirect_to submission_path(@submission), alert: 'You already voted for this submission' }
+        # format.html { redirect_to submission_path(@submission), alert: 'You already voted for this submission' }
+        format.html { redirect_back fallback_location: root_path, alert: 'You already voted for this submission' }
       end
     end
   end
@@ -95,7 +98,7 @@ class SubmissionsController < ApplicationController
         }
         # format.html { redirect_back(:fallback_location root_path) }
       else
-        format.html { redirect_to submission_path(@submission), alert: 'You already voted for this submission' }
+        format.html {  redirect_back fallback_location: root_path, alert: 'You already voted for this submission' }
       end
     end
   end

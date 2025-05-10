@@ -5,7 +5,7 @@
 <% content_for :primary_content do %>
 	<div class="flex flex-row justify-between">
 
-		<%= render 'voting', submission: @submission %>
+		<%= render 'submissions/voting', submission: @submission %>
 
 		<div class="flex-1">
 			<p class="mb-3 text-sm text-gray-600">Posted by <%= link_to @submission.user.username, profile_path(@submission.user), class: 'underline' %>
@@ -14,10 +14,12 @@
 
 			<h1 class="font-bold text-3xl mb-6"><%= @submission.title %></h1>
 
-			<% if @submission.media.video? %>
-				<%= video_tag @submission.media, class: '' %>
-			<% else %>
-				<%# image_tag @submission.media, alt: @submission.title, class: 'rounded' %>
+			<% if @submission.media.attached? %>
+				<% if @submission.media.video? %>
+					<%= video_tag @submission.media, class: '' %>
+				<% elsif @submission.media.image? %>
+					<%= image_tag @submission.media, alt: @submission.title, class: 'rounded' %>
+				<% end %>
 			<% end %>
 
 			<div class="prose prose-lg prose-indigo">
