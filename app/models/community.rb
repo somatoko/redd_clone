@@ -4,4 +4,6 @@ class Community < ApplicationRecord
 
   has_many :subscriptions
   has_many :users, through: :subscriptions
+
+  validates_associated :submissions
 end
