@@ -8,11 +8,11 @@
 			<%= render_svg 'icons/down-vote', styles: 'fill-current text-gray-500 w-4 h-4 group-hover:text-indigo-600' %>
 		<% end %>
 	<% else %>
-		<%= link_to new_user_session_path, class: 'px-3 group' do %>
+		<%= link_to new_user_session_path, data: {turbo: false}, class: 'px-3 group' do %>
 			<%= render_svg 'icons/up-vote', styles: 'fill-current text-gray-500 w-4 h-4 group-hover:text-indigo-600' %>
 		<% end %>
 		<span id="<%= dom_id(comment) %>_votes_count" class="text-gray-700 text-center block -mt-1"><%= comment.total_vote_count %></span>
-		<%= link_to new_user_session_path, class: 'px-3 group' do %>
+		<%= link_to new_user_session_path, data: {turbo: false}, class: 'px-3 group' do %>
 			<%= render_svg 'icons/down-vote', styles: 'fill-current text-gray-500 w-4 h-4 group-hover:text-indigo-600' %>
 		<% end %>
 	<% end %>

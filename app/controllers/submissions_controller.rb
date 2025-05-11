@@ -36,6 +36,7 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
+        SubmissionMailer.with(comment: @comment, submission: @submission).new_response.deliver_now
         format.html { redirect_to @submission, notice: "Submission was successfully created." }
         format.json { render :show, status: :created, location: @submission }
       else

@@ -1,0 +1,8 @@
+New Comment on your submission: <%= @submission.title %>
+
+Hey <%= @submission.user.username %>,
+Your submission "<%= @submission.title %>" located at <%= submission_url(@submission) %> received a response.
+
+New comment:
+
+<%= @comment.reply %>
