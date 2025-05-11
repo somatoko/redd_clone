@@ -1,0 +1,4 @@
+# Queues processed in provided order.
+:queues:
+  - default
+  - mailers

@@ -77,3 +77,8 @@ gem 'devise', '~> 4.9', '>= 4.9.4'
 gem "inline_svg", "~> 1.10"
 gem 'acts_as_votable', '~> 0.14.0'
 gem "validate_url", "~> 1.0"
+
+group :production do
+  gem 'redis', '~> 5.4'
+  gem 'sidekiq', '~> 8.0', '>= 8.0.3'
+end
