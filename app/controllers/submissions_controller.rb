@@ -1,7 +1,7 @@
 class SubmissionsController < ApplicationController
   include ActionView::RecordIdentifier
   before_action :set_submission, only: %i[ show edit update destroy upvote downvote ]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show unsubscribe]
 
   # GET /submissions or /submissions.json
   def index
@@ -36,7 +36,6 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
-        SubmissionMailer.with(comment: @comment, submission: @submission).new_response.deliver_now
         format.html { redirect_to @submission, notice: "Submission was successfully created." }
         format.json { render :show, status: :created, location: @submission }
       else
@@ -110,7 +109,14 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  private
+  def unsubscribe
+    # user = User.find(unsubscribe_hash: params[:unsubscribe_hash])
+    user = User.find_by_unsubscribe_hash(params[:unsubscribe_hash])
+    user.update(comment_subscription: false)
+  end
+
+private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_submission
       @submission = Submission.find(params[:id])

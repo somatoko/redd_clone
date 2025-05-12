@@ -79,6 +79,6 @@ gem 'acts_as_votable', '~> 0.14.0'
 gem "validate_url", "~> 1.0"
 
 group :production do
-  gem 'redis', '~> 5.4'
+  gem 'redis', '~> 5.4', require: false
   gem 'sidekiq', '~> 8.0', '>= 8.0.3'
 end
