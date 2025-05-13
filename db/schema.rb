@@ -92,7 +92,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_12_170645) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "unsubscribe_hash"
-    t.boolean "comment_subscription"
+    t.boolean "comment_subscription", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
@@ -117,8 +117,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_12_170645) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "submissions"
-  add_foreign_key "comments", "users"
-  add_foreign_key "communities", "users"
   add_foreign_key "submissions", "communities"
   add_foreign_key "submissions", "users"
   add_foreign_key "subscriptions", "communities"

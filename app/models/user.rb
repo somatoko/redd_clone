@@ -21,6 +21,6 @@ class User < ApplicationRecord
 private
 
   def add_unsubscribe_hash
-    unsubscribe_hash = SecureRandom.hex()
+    self.unsubscribe_hash = SecureRandom.hex()
   end
 end
