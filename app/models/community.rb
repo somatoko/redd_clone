@@ -1,4 +1,7 @@
 class Community < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: [:title, :name]
+
   belongs_to :user
   has_many :submissions
 

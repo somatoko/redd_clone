@@ -40,10 +40,12 @@
 				<%# Search component %>
 				<div class="flex grow">
 					<div class="relative">
-						<input type="text" class="input pl-10!" placeholder="Search ReDD">
-						<div class="pointer-events-none absolute inset-y-5 left-2 flex items-center">
-							<%= render_svg 'icons/search', styles: 'fill-current w-6 y-6 text-gray-600' %>
-						</div>
+						<%= form_with url: search_path, method: :get, data: {turbo_frame: 'searches'} do |form| %>
+							<%= form.text_field :query, class: 'input pl-10!', placeholder: 'Search ReDD' %>
+							<div class="pointer-events-none absolute inset-y-5 left-2 flex items-center">
+								<%= render_svg 'icons/search', styles: 'fill-current w-6 y-6 text-gray-600' %>
+							</div>
+						<% end %>
 					</div>
 				</div>
 

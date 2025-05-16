@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     @communities = Community.all.order(:title)
   end
 
+  def search
+    @results = PgSearch.multisearch(params[:query])
+  end
+
   protected
 
   # Needed for customary-added fields to the User resource.

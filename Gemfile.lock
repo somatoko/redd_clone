@@ -200,6 +200,10 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
+    pg (1.5.9)
+    pg_search (2.3.7)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -315,14 +319,6 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.6.0-aarch64-linux-gnu)
-    sqlite3 (2.6.0-aarch64-linux-musl)
-    sqlite3 (2.6.0-arm-linux-gnu)
-    sqlite3 (2.6.0-arm-linux-musl)
-    sqlite3 (2.6.0-arm64-darwin)
-    sqlite3 (2.6.0-x86_64-darwin)
-    sqlite3 (2.6.0-x86_64-linux-gnu)
-    sqlite3 (2.6.0-x86_64-linux-musl)
     standard (1.49.0)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -390,6 +386,8 @@ DEPENDENCIES
   inline_svg (~> 1.10)
   jbuilder
   jsbundling-rails
+  pg (~> 1.1)
+  pg_search
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)
   rails_live_reload
@@ -397,7 +395,6 @@ DEPENDENCIES
   selenium-webdriver
   sidekiq (~> 8.0, >= 8.0.3)
   sprockets-rails
-  sqlite3 (>= 1.4)
   standard (~> 1.49)
   stimulus-rails
   turbo-rails

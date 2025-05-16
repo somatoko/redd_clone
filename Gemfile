@@ -8,8 +8,8 @@ gem "rails", "~> 7.1.5", ">= 7.1.5.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 1.4"
+# Use pg as the database for Active Record
+gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -77,6 +77,7 @@ gem 'devise', '~> 4.9', '>= 4.9.4'
 gem "inline_svg", "~> 1.10"
 gem 'acts_as_votable', '~> 0.14.0'
 gem "validate_url", "~> 1.0"
+gem 'pg_search'
 
 group :production do
   gem 'redis', '~> 5.4', require: false
