@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  authenticate :user, lambda { |u| u.admin? } do
+    # mount Sidekiq::Web => '/sidekiq'
+    namespace :admin do
+      resources :users
+      root to: 'users#index'
+    end
+  end
+
   resources :communities do
     resources :subscriptions
   end
