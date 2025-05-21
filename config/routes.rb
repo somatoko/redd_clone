@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     # mount Sidekiq::Web => '/sidekiq'
     namespace :admin do
       resources :users
+      resources :submissions
       root to: 'users#index'
     end
   end

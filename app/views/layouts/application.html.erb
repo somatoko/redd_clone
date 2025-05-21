@@ -9,6 +9,8 @@
 		<%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 	</head>
 	<body class="bg-gray-200 accent-indigo-600 relative h-screen overflow-x-hidden">
+		<%= render 'admin/nav' if params[:controller].include?('admin') %>
+
 		<%= render 'layouts/flash' %>
 		<%= render 'layouts/navbar' %>
 		<%# Main page content %>

@@ -71,6 +71,14 @@
 								<% end %>
 								<div class="relative">
 									<ul data-dropdown-target="menu" class="hidden absolute top-1 right-0 bg-white min-w-[200px] border rounded shadow-lg border-gray-400">
+										<% if current_user.admin? %>
+											<li>
+												<%= link_to admin_root_path(current_user), class: 'hover:bg-indigo-50 hover:text-indigo-600 text-gray-700 no-underline block py-2 px-4 flex items-center text-sm rounded-t group' do %>
+													<%= render_svg "icons/key", styles: "w-5 h-5 fill-current text-gray-600 mr-3 group-hover:text-indigo-600" %>
+													Admin
+												<% end %>
+											</li>
+										<% end %>
 										<li>
 											<%= link_to profile_path(current_user), class: 'hover:bg-indigo-50 hover:text-indigo-600 text-gray-700 no-underline block py-2 px-4 flex items-center text-sm rounded-t group' do %>
 												<%= render_svg "icons/user", styles: "w-5 h-5 fill-current text-gray-600 mr-3 group-hover:text-indigo-600" %>
