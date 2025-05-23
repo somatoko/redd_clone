@@ -1,0 +1,12 @@
+<div class="max-w-lg mx-auto p-8 rounded-xl shadow-xl bg-white mt-16">
+	<div class="h-[200px] bg-gray-100 overflow-hidden mb-6 rounded-lg">
+		<img src="https://picsum.photos/seed/picsum/800/400" class="bg-gray-100 object-cover rounded-lg" />
+	</div>
+	<h1 class="font-black text-3xl mb-2">Subscribe to ReDD Premium</h1>
+	<p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<% if user_signed_in? && current_user.subscribed? %>
+		<p class="p-3 rounded bg-indigo-50 text-center">You are already subscribed</p>
+	<% else %>
+		<%= button_to "Subscribe for $5 per month", checkouts_path, data: {turbo: false}, class: 'px-3 py-4 bg-indigo-600 text-white w-full text-center rounded' %>
+	<% end %>
+</div>

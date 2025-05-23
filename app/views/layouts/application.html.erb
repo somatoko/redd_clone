@@ -6,7 +6,7 @@
 		<%= csrf_meta_tags %>
 		<%= csp_meta_tag %>
 		<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-		<%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+		<%= javascript_include_tag "application", "https://js.stripe.com/v3", "data-turbo-track": "reload", type: "module" %>
 	</head>
 	<body class="bg-gray-200 accent-indigo-600 relative h-screen overflow-x-hidden">
 		<%= render 'admin/nav' if params[:controller].include?('admin') %>

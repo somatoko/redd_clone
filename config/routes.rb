@@ -36,5 +36,13 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get :search, controller: :application
+
+  resource :pricing
+  resources :checkouts
+  resources :premium_subscriptions
+  get "success", to: "checkouts#success"
+  resources :webhooks, only: :create
+  resources :billings, only: :create
+
   root 'submissions#index'
 end

@@ -4,6 +4,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+           validates_uniqueness_of :username
+           validates_presence_of :username
 
   has_many :communities
   has_many :submissions, dependent: :destroy
@@ -12,11 +15,13 @@ class User < ApplicationRecord
   has_many :communities, through: :subscriptions
 
   has_many :subscribed_submissions, through: :communities, source: :submissions
-
-  validates_uniqueness_of :username
-  validates_presence_of :username
+  has_many :premium_subscriptions, dependent: :destroy
 
   acts_as_voter
+
+  def subscribed?
+    premium_subscriptions.where(status: 'active').any?
+  end
 
 private
 

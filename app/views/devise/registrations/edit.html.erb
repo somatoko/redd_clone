@@ -49,6 +49,15 @@
 		<%= f.submit "Update", class: 'btn btn-indigo w-full' %>
 	<% end %>
 
+	<div class="my-6">
+		<h3 class="mb-2 font-bold text-lg">ReDD Premium</h3>
+		<% if user_signed_in? && !current_user.subscribed? %>
+			<%= button_to "Subscribe for $5 per month", checkouts_path, data: {turbo: false}, class: 'px-3 py-2 bg-indigo-600 text-white w-full text-center rounded' %>
+		<% else %>
+			<%= button_to "Manage subscription", billings_path, data: {turbo: false}, class: 'text-sm font-medium px-3 py-2 bg-gray-600 text-white w-full text-center rounded' %>
+		<% end %>
+	</div>
+
 	<hr class="my-6" />
 	<h3 class="text-2xl font-bold mb-3">Cancel my account</h3>
 
