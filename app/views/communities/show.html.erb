@@ -3,8 +3,9 @@
 <%= render 'header', community: @community %>
 
 <% content_for :primary_content do %>
-	<ul class="list-none">
-		<% @community.submissions.each do |submission| %>
+	<ul class="list-none divide-y divide-gray-300">
+		<% @community.submissions.each_with_index do |submission, index| %>
+			<%= inject_feed_ad(index) %>
 			<%= render 'submissions/submission', submission: submission %>
 		<% end %>
 	</ul>

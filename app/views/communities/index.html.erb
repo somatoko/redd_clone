@@ -4,7 +4,7 @@
 	<% if @communities.any? %>
 		<h1 class="text-2xl text-bold mb-6">Communities</h1>
 		<%#<ul id="communities" class="divide-y border p-6 rounded flex items-center justify-between"> %>
-		<ul id="communities" class="divide-y">
+		<ul id="communities" class="divide-y divide-gray-300">
 			<% @communities.each do |community| %>
 				<%= render community %>
 			<% end %>

@@ -3,8 +3,9 @@
 <% content_for :primary_content do %>
 	<% if @submissions.any? %>
 		<div id="submissions">
-			<ul class="divide-y">
-				<% @submissions.each do |submission| %>
+			<ul class="divide-y divide-gray-300">
+				<% @submissions.each_with_index do |submission, index| %>
+					<%= inject_feed_ad(index) %>
 					<%= render submission %>
 				<% end %>
 			</ul>
