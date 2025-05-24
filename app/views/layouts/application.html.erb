@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>ReddC</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<%= csrf_meta_tags %>
 		<%= csp_meta_tag %>
 		<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 		<%= javascript_include_tag "application", "https://js.stripe.com/v3", "data-turbo-track": "reload", type: "module" %>
+		<%= favicon_link_tag asset_path('96x96.png') %>
+		<%= display_meta_tags(
+            site: 'Communities & Opinions | ReDD',
+            reverse: true,
+            viewport: '',
+            og: {
+                title: :title,
+                type: 'website',
+                url: request.original_url,
+                image: [{
+                    _: image_url('opengraph.jpg'),
+                    width: 1200,
+                    height: 630
+                }],
+                site_name: 'redd-example.com',
+                description: 'A fake Reddit clone',
+            },
+            twitter: {
+                card: 'photo',
+                image: {
+                    _: image_url('opengraph.jpg'),
+                    width: 1200,
+                    height: 630
+                },
+            },
+            author: 'ReDD',
+            description: 'A fake Reddit clone',
+        ) %>
 	</head>
 	<body class="bg-gray-200 accent-indigo-600 relative h-screen overflow-x-hidden">
 		<%= render 'admin/nav' if params[:controller].include?('admin') %>

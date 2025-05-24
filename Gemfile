@@ -70,8 +70,8 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :production do
@@ -79,10 +79,11 @@ group :production do
   gem 'sidekiq', '~> 8.0', '>= 8.0.3'
 end
 
-gem 'devise', '~> 4.9', '>= 4.9.4'
-gem "inline_svg", "~> 1.10"
 gem 'acts_as_votable', '~> 0.14.0'
-gem "validate_url", "~> 1.0"
+gem 'devise', '~> 4.9', '>= 4.9.4'
+gem 'friendly_id', '~> 5.5'
+gem 'inline_svg', '~> 1.10'
+gem 'meta-tags', '~> 2.22'
 gem 'pg_search'
-gem "stripe", "~> 15.1"
-gem "friendly_id", "~> 5.5"
+gem 'stripe', '~> 15.1'
+gem 'validate_url', '~> 1.0'
