@@ -74,15 +74,15 @@ group :test do
   gem "selenium-webdriver"
 end
 
+group :production do
+  gem 'redis', '~> 5.4', require: false
+  gem 'sidekiq', '~> 8.0', '>= 8.0.3'
+end
+
 gem 'devise', '~> 4.9', '>= 4.9.4'
 gem "inline_svg", "~> 1.10"
 gem 'acts_as_votable', '~> 0.14.0'
 gem "validate_url", "~> 1.0"
 gem 'pg_search'
 gem "stripe", "~> 15.1"
-
-group :production do
-  gem 'redis', '~> 5.4', require: false
-  gem 'sidekiq', '~> 8.0', '>= 8.0.3'
-end
-
+gem "friendly_id", "~> 5.5"

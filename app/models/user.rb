@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  extend FriendlyId
   before_create :add_unsubscribe_hash
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -18,6 +19,20 @@ class User < ApplicationRecord
   has_many :premium_subscriptions, dependent: :destroy
 
   acts_as_voter
+
+  friendly_id :slug_candidates, use: [:slugged, :finders]
+
+  def slug_candidates
+    [:username, [:username, :id]]
+  end
+
+  def should_generate_new_friendly_id?
+    if !slug?
+      username_changed? || (!new_record? && super)
+    else
+      false
+    end
+  end
 
   def subscribed?
     premium_subscriptions.where(status: 'active').any?
